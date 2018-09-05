@@ -1,1 +1,3 @@
-# Memory-Game-Showcase
+# Memory Game Showcase
+
+This is a showcase of one of the projects I completed at Udacity platform.
