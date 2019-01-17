@@ -1,0 +1,105 @@
+body {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  background: #ccd4d9;
+}
+header {
+  color: #8651bb;
+}
+p {
+  opacity: 1;
+  position: absolute;
+  padding: 2em;
+  top: 10em;
+  width: auto;
+  height: auto;
+  left: 10%;
+  right: 10%;
+  background-color: #ccd4d9;
+  border-style: groove;
+  border-width: 0.5em;
+  border-color: #8651bb;
+  font-size: 1.3em;
+}
+button {
+  pointer-events: auto;
+  cursor: pointer;
+}
+ul {
+  display: inline-flex;
+  list-style: none;
+  position: relative;
+  left: -2em;
+  font-size: 1.3em;
+}
+section {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 29em;
+  min-width: 29em;
+  padding: 1em;
+  border-style: groove;
+  border-width: 0.5em;
+  border-color: #8651bb;
+}
+div {
+  height: 3em;
+  width: 3em;
+  padding: 2em;
+  background-color: #3e0e4c;
+  border-style: solid;
+  border-width: 0.1em;
+  border-radius: 2em;
+  cursor: pointer;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+div:hover {
+  border-radius: 0.5em;
+  border-color: #df612b;
+}
+i {
+  position: relative;
+  margin: 0.5em;
+  color: #3e0e4c;
+}
+#number, #timer {
+  position: relative;
+  top: 0.3em;
+}
+.fa-repeat {
+  cursor: pointer;
+}
+.open {
+  color: #ffffff;
+  font-size: 1.5em;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+.match {
+  color: #a8e6cf;
+  font-size: 1.5em;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+.wrong {
+  color: #e81f3f;
+  font-size: 1.5em;
+}
+.hidden {
+  pointer-events: none;
+  opacity: 0;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+.disable {
+  pointer-events: none;
+}
