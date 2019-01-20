@@ -1,0 +1,29 @@
+body {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  background-image: linear-gradient(to right, rgba(255, 255, 255), rgba(125, 50, 25));
+}
+
+
+table {
+  margin: auto;
+}
+
+
+td {
+  margin-left: 4px;
+  text-align: center;
+  width: 7em;
+  height: 7em;
+  border: solid 4px black;
+}
+
+
+td:hover {
+  cursor: pointer;
+  border-color: red;
+}
+
+
+.center {
+  background-color: black;
+}
