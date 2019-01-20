@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(() => {
 
   const listOfSigns = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb", "fa fa-automobile", "fa fa-file-text", "fa fa-gear", "fa fa-bullhorn"];
   let signID = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11];
@@ -17,11 +17,24 @@ $(document).ready(function () {
   for (row = 1; row <= 5; row++) {
     $("table").append("<tr class='row'></tr>");
     for (index = 1; index <= 5; index++) {
-      if (row == 3 && index == 3) $("table").append("<td class='center " + listOfSigns[0] + "'></td>");
+      if (row == 3 && index == 3) $("table").append("<td class='center'></td>");
       else {
-        $("table").append("<td class='" + listOfSigns[signID[id]] + "'></td>");
+        $("table").append("<td></td>");
+        $("td").last().append("<div class='" + listOfSigns[signID[id]] + "'></div>");
         id++;
       }
+    }
+  }
+
+});
+
+$(document).on("click", "td", function() {
+
+  $(this).children().addClass("cardIsOpen");
+
+  if ($("div.cardIsOpen").length == 2) {
+    if ($("div.cardIsOpen").first().attr("class") == $("div.cardIsOpen").last().attr("class")) {
+
     }
   }
 

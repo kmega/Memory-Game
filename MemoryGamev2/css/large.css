@@ -1,6 +1,6 @@
 body {
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-  background-image: linear-gradient(to right, rgba(255, 255, 255), rgba(125, 50, 25));
+  background-image: linear-gradient(to right, #ffeede, #c77244);
 }
 
 
@@ -10,20 +10,43 @@ table {
 
 
 td {
-  margin-left: 4px;
   text-align: center;
   width: 7em;
   height: 7em;
-  border: solid 4px black;
+  border: 3px double #e7c3b0;
+  background-image: linear-gradient(45deg, #291200, #8d4000);
+  -webkit-transition-property: all;
+  -webkit-transition-duration: 0.2s;
 }
 
 
 td:hover {
   cursor: pointer;
-  border-color: red;
+  border-radius: 2em;
+  border-color: #006fd4;
+}
+
+
+.fa {
+  display: none;
+  margin-top: 30px;
+  font-size: 3em;
+  color: #fdcd9c;
 }
 
 
 .center {
-  background-color: black;
+  background-image: linear-gradient(45deg, #006fd4, #003e6d);
+  border-radius: 20em;
+}
+
+
+.center:hover {
+  cursor: default;
+  border: 3px double #e7c3b0;
+}
+
+
+.cardIsOpen {
+  display: inline-block;
 }
