@@ -1,16 +1,24 @@
 body {
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   background-image: linear-gradient(to right, #ffeede, #c77244);
+  text-align: center;
+  font-weight: bold;
+}
+
+
+ul {
+  list-style: none;
+  font-size: 1.5em;
 }
 
 
 table {
   margin: auto;
+  padding-left: 40px;
 }
 
 
 td {
-  text-align: center;
   width: 7em;
   height: 7em;
   border: 3px double #e7c3b0;
@@ -27,6 +35,20 @@ td:hover {
 }
 
 
+#gameIsFinished {
+  text-align: center;
+  font-size: 2em;
+}
+
+
+#resetGame {
+  display: inline-block;
+  margin-top: 1em;
+  font-size: 2em;
+  color: #a1e4ee;
+}
+
+
 .fa {
   display: inline-block;
   margin-top: 30px;
@@ -35,15 +57,18 @@ td:hover {
 }
 
 
-.center {
-  background-image: linear-gradient(45deg, #006fd4, #003e6d);
-  border-radius: 20em;
+.fa-star {
+  display: inline-block;
+  margin-top: 7px;
+  font-size: 2em;
+  color: #fdcd9c;
 }
 
 
-.center:hover {
-  cursor: default;
-  border: 3px double #e7c3b0;
+.center {
+  position: fixed;
+  background-image: linear-gradient(45deg, #006fd4, #003e6d);
+  border-radius: 20em;
 }
 
 
@@ -65,9 +90,4 @@ td:hover {
 
 .tableBlocked {
   pointer-events: none;
-}
-
-
-.gameFinished {
-  display: none;
 }

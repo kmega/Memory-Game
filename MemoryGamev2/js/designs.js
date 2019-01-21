@@ -17,7 +17,7 @@ $(document).ready(() => {
   for (row = 1; row <= 5; row++) {
     $("table").append("<tr class='row'></tr>");
     for (index = 1; index <= 5; index++) {
-      if (row == 3 && index == 3) $("table").append("<td class='center'></td>");
+      if (row == 3 && index == 3) $("table").append("<td class='center'><div id='resetGame'>RESET</div></td>");
       else {
         $("table").append("<td></td>");
         $("td").last().append("<div class='" + listOfSigns[signID[id]] + "'></div>");
@@ -28,21 +28,29 @@ $(document).ready(() => {
 
 });
 
-let timerInProgress = false, minutes = 0, seconds = 0, separator = ":";
+let gameIsFinished = false, timerInProgress = false, minutes = 0, seconds = 0, separator = ":", playerMoves = 0, multiplier = 1;
 
 $(document).on("click", "td", function() {
 
-  if (timerInProgress == false) {
+  if (timerInProgress == false && $(this).hasClass("center") == false) {
     timerInProgress = true;
     Timer();
   }
 
   $(this).children().addClass("cardIsOpen");
-  if ($(this).children().hasClass("match")) {
+  if ($(this).children().hasClass("match") || $(this).hasClass("center")) {
     $(this).children().removeClass("cardIsOpen");
   }
 
   if ($("div.cardIsOpen").length == 2) {
+
+    playerMoves++;
+    $("#numberOfMoves").text(playerMoves);
+    if (playerMoves > 20 * multiplier) {
+      $(".fa-star").first().remove();
+      multiplier++;
+    }
+
     if ($("div.cardIsOpen").first().attr("class") == $("div.cardIsOpen").last().attr("class")) {
       $(".cardIsOpen").addClass("match");
       $(".cardIsOpen").removeClass("cardIsOpen");
@@ -58,10 +66,23 @@ $(document).on("click", "td", function() {
     }
   }
 
-  if ($("div.match").length == 24) {
-    $("table").addClass("gameFinished");
-    $("section").append("<div class=''>You have beaten the game!</div>");
+  if ($("div.match").length == 24 && gameIsFinished == false) {
+    gameIsFinished = true;
+    $("header").append("<div id='gameIsFinished'>You have beaten the game in " + playerMoves + " moves. Your time was " + minutes + " minutes and " + seconds + " seconds.</div>");
   }
+
+});
+
+$(document).on("click", "td.center", function() {
+
+  gameIsFinished = false;
+  timerInProgress = false;
+  minutes = 0;
+  seconds = 0;
+  playerMoves = 0;
+  multiplier = 1;
+  $(".match").removeClass("match");
+  $(".gameIsFinished").remove();
 
 });
 
@@ -78,9 +99,11 @@ function Timer() {
   else {
     separator = ":";
   }
-  $("#timer").text(minutes + separator + seconds);
 
-  seconds++;
-  setTimeout("Timer()", 1000);
+  $("#timer").text(minutes + separator + seconds);
+  if (gameIsFinished == false) {
+    seconds++;
+    setTimeout("Timer()", 1000);
+  }
 
 }
