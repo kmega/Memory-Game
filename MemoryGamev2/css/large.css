@@ -28,7 +28,7 @@ td:hover {
 
 
 .fa {
-  display: none;
+  display: inline-block;
   margin-top: 30px;
   font-size: 3em;
   color: #fdcd9c;
@@ -65,4 +65,9 @@ td:hover {
 
 .tableBlocked {
   pointer-events: none;
+}
+
+
+.gameFinished {
+  display: none;
 }

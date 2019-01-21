@@ -28,7 +28,14 @@ $(document).ready(() => {
 
 });
 
+let timerInProgress = false, minutes = 0, seconds = 0, separator = ":";
+
 $(document).on("click", "td", function() {
+
+  if (timerInProgress == false) {
+    timerInProgress = true;
+    Timer();
+  }
 
   $(this).children().addClass("cardIsOpen");
   if ($(this).children().hasClass("match")) {
@@ -51,4 +58,29 @@ $(document).on("click", "td", function() {
     }
   }
 
+  if ($("div.match").length == 24) {
+    $("table").addClass("gameFinished");
+    $("section").append("<div class=''>You have beaten the game!</div>");
+  }
+
 });
+
+function Timer() {
+
+  if (seconds >= 60) {
+    minutes++;
+    seconds = 0;
+  }
+
+  if (seconds < 10) {
+    separator = ":0";
+  }
+  else {
+    separator = ":";
+  }
+  $("#timer").text(minutes + separator + seconds);
+
+  seconds++;
+  setTimeout("Timer()", 1000);
+
+}
