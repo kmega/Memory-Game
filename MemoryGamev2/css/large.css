@@ -50,3 +50,19 @@ td:hover {
 .cardIsOpen {
   display: inline-block;
 }
+
+
+.match {
+  display: block;
+  color: #08f0b0;
+}
+
+
+.wrongMatch {
+  color: #d70d2f;
+}
+
+
+.tableBlocked {
+  pointer-events: none;
+}

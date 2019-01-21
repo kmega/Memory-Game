@@ -31,10 +31,23 @@ $(document).ready(() => {
 $(document).on("click", "td", function() {
 
   $(this).children().addClass("cardIsOpen");
+  if ($(this).children().hasClass("match")) {
+    $(this).children().removeClass("cardIsOpen");
+  }
 
   if ($("div.cardIsOpen").length == 2) {
     if ($("div.cardIsOpen").first().attr("class") == $("div.cardIsOpen").last().attr("class")) {
-
+      $(".cardIsOpen").addClass("match");
+      $(".cardIsOpen").removeClass("cardIsOpen");
+    }
+    else {
+      $("table").addClass("tableBlocked");
+      $(".cardIsOpen").addClass("wrongMatch");
+      setTimeout(() => {
+        $(".cardIsOpen").removeClass("wrongMatch");
+        $(".cardIsOpen").removeClass("cardIsOpen");
+        $("table").removeClass("tableBlocked");
+      }, 750);
     }
   }
 
