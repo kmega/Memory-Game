@@ -1,34 +1,26 @@
+let signID = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11];
+
 $(document).ready(() => {
 
   const listOfSigns = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb", "fa fa-automobile", "fa fa-file-text", "fa fa-gear", "fa fa-bullhorn"];
-  let signID = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11];
-  let row, index, id, holder;
+  let value = 0;
+  signID = ShuffleCards(signID);
 
-  for (index = 0; index < 25; index++) {
-    id = -1;
-    while (id < 0 || id > signID.length - 1) id = Math.floor(Math.random() * 100);
-    holder = signID[id];
-    signID[id] = signID[0];
-    signID[0] = holder;
-  }
-
-  id = 0;
-
-  for (row = 1; row <= 5; row++) {
+  for (let row = 1; row <= 5; row++) {
     $("table").append("<tr class='row'></tr>");
-    for (index = 1; index <= 5; index++) {
+    for (let index = 1; index <= 5; index++) {
       if (row == 3 && index == 3) $("table").append("<td class='center'><div id='resetGame'>RESET</div></td>");
       else {
         $("table").append("<td></td>");
-        $("td").last().append("<div class='" + listOfSigns[signID[id]] + "'></div>");
-        id++;
+        $("td").last().append("<div class='" + listOfSigns[signID[value]] + "'></div>");
+        value++;
       }
     }
   }
 
 });
 
-let gameIsFinished = false, timerInProgress = false, minutes = 0, seconds = 0, separator = ":", playerMoves = 0, multiplier = 1;
+let reset = false, gameIsFinished = false, timerInProgress = false, minutes = 0, seconds = 0, separator = ":", playerMoves = 0, multiplier = 1, stars = 0;
 
 $(document).on("click", "td", function() {
 
@@ -68,23 +60,60 @@ $(document).on("click", "td", function() {
 
   if ($("div.match").length == 24 && gameIsFinished == false) {
     gameIsFinished = true;
-    $("header").append("<div id='gameIsFinished'>You have beaten the game in " + playerMoves + " moves. Your time was " + minutes + " minutes and " + seconds + " seconds.</div>");
+    stars = $("div.fa-star").length;
+    $("ul").addClass("hidden");
+    $("header").append("<div id='gameIsFinished'>You have beaten the game in " + minutes + separator + seconds + ". You made " + playerMoves + " moves. Your performance was: " + stars + " stars.</div>");
   }
 
 });
 
 $(document).on("click", "td.center", function() {
 
+  reset = true;
   gameIsFinished = false;
   timerInProgress = false;
   minutes = 0;
   seconds = 0;
   playerMoves = 0;
   multiplier = 1;
-  $(".match").removeClass("match");
-  $(".gameIsFinished").remove();
+  stars = 0;
+
+  $("#timer").text("0:00");
+  $("#numberOfMoves").text("0");
+  if ($("div.fa-star").length < 3) {
+    for (let i = $("div.fa-star").length; i < 3; i++) {
+      $("#performance").append("<div class='fa fa-star'></div>");
+    }
+  }
+
+  $("div#gameIsFinished").remove();
+  $(".match").removeAttr("class");
+  $("ul").removeClass("hidden");
+
+  signID = ShuffleCards(signID);
 
 });
+
+function ShuffleCards(signID) {
+
+  let firstID, secondID, holder;
+
+  for (let i = 0; i < signID.length; i++) {
+    firstID = 50;
+    secondID = 50;
+    while (firstID > signID.length - 1) firstID = Math.floor(Math.random() * 100);
+    while (secondID > signID.length - 1) secondID = Math.floor(Math.random() * 100);
+    holder = signID[firstID];
+    signID[firstID] = signID[secondID];
+    signID[secondID] = holder;
+  }
+
+  if (reset == true) {
+    reset == false;
+  }
+  return signID;
+
+};
 
 function Timer() {
 
@@ -106,4 +135,4 @@ function Timer() {
     setTimeout("Timer()", 1000);
   }
 
-}
+};

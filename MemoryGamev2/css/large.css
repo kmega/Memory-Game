@@ -38,6 +38,7 @@ td:hover {
 #gameIsFinished {
   text-align: center;
   font-size: 2em;
+  padding: 2em;
 }
 
 
@@ -90,4 +91,9 @@ td:hover {
 
 .tableBlocked {
   pointer-events: none;
+}
+
+
+.hidden {
+  display: none;
 }
