@@ -1,3 +1,3 @@
-# Memory Game Showcase
+# Memory Game Project
 
-This is a showcase of one of the projects I completed at Udacity platform during Front-End Developer course.
+This is one of the projects I completed at Udacity platform during Front-End Developer course.
