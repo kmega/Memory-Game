@@ -1,22 +1,20 @@
+const listOfSigns = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb", "fa fa-automobile", "fa fa-file-text", "fa fa-gear", "fa fa-bullhorn"];
 let signID = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11];
 
 $(document).ready(() => {
 
-  const listOfSigns = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb", "fa fa-automobile", "fa fa-file-text", "fa fa-gear", "fa fa-bullhorn"];
-  let value = 0;
-  signID = ShuffleCards(signID);
-
-  for (let row = 1; row <= 5; row++) {
+  for (let row = 0; row < 5; row++) {
     $("table").append("<tr class='row'></tr>");
-    for (let index = 1; index <= 5; index++) {
-      if (row == 3 && index == 3) $("table").append("<td class='center'><div id='resetGame'>RESET</div></td>");
+    for (let index = 0; index < 5; index++) {
+      if (row == 2 && index == 2) $("table").append("<td class='center'><div id='resetGame'>RESET</div></td>");
       else {
-        $("table").append("<td></td>");
-        $("td").last().append("<div class='" + listOfSigns[signID[value]] + "'></div>");
-        value++;
+        $("table").append("<td><div></div></td>");
       }
     }
   }
+
+  signID = ShuffleIDs(signID);
+  AddSigns(signID, listOfSigns);
 
 });
 
@@ -39,11 +37,11 @@ $(document).on("click", "td", function() {
     playerMoves++;
     $("#numberOfMoves").text(playerMoves);
     if (playerMoves > 20 * multiplier) {
-      $(".fa-star").first().remove();
+      $(".fa-star:first").remove();
       multiplier++;
     }
 
-    if ($("div.cardIsOpen").first().attr("class") == $("div.cardIsOpen").last().attr("class")) {
+    if ($("div.cardIsOpen:first").attr("class") == $("div.cardIsOpen:last").attr("class")) {
       $(".cardIsOpen").addClass("match");
       $(".cardIsOpen").removeClass("cardIsOpen");
     }
@@ -69,15 +67,6 @@ $(document).on("click", "td", function() {
 
 $(document).on("click", "td.center", function() {
 
-  reset = true;
-  gameIsFinished = false;
-  timerInProgress = false;
-  minutes = 0;
-  seconds = 0;
-  playerMoves = 0;
-  multiplier = 1;
-  stars = 0;
-
   $("#timer").text("0:00");
   $("#numberOfMoves").text("0");
   if ($("div.fa-star").length < 3) {
@@ -87,14 +76,24 @@ $(document).on("click", "td.center", function() {
   }
 
   $("div#gameIsFinished").remove();
-  $(".match").removeAttr("class");
+  $("td > div").removeAttr("class");
   $("ul").removeClass("hidden");
 
-  signID = ShuffleCards(signID);
+  reset = true;
+  gameIsFinished = false;
+  timerInProgress = false;
+  minutes = 0;
+  seconds = 0;
+  playerMoves = 0;
+  multiplier = 1;
+  stars = 0;
+
+  signID = ShuffleIDs(signID);
+  AddSigns(signID, listOfSigns);
 
 });
 
-function ShuffleCards(signID) {
+function ShuffleIDs(signID) {
 
   let firstID, secondID, holder;
 
@@ -112,6 +111,22 @@ function ShuffleCards(signID) {
     reset == false;
   }
   return signID;
+
+};
+
+function AddSigns(signID, listOfSigns) {
+
+  let value = 0;
+
+  $("td").each(function() {
+    if ($(this).hasClass("center") == true) {
+      return true;
+    }
+    else {
+      $(this).children().addClass(listOfSigns[signID[value]]);
+    }
+    value++;
+  });
 
 };
 

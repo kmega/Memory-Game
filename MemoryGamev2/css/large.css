@@ -1,20 +1,26 @@
 body {
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-family: Arial, Helvetica, sans-serif;
   background-image: linear-gradient(to right, #ffeede, #c77244);
   text-align: center;
   font-weight: bold;
+  color: #291200;
 }
 
 
 ul {
   list-style: none;
   font-size: 1.5em;
+  padding-right: 1.7em;
+}
+
+
+li {
+  padding: 0.1em;
 }
 
 
 table {
   margin: auto;
-  padding-left: 40px;
 }
 
 
@@ -23,8 +29,10 @@ td {
   height: 7em;
   border: 3px double #e7c3b0;
   background-image: linear-gradient(45deg, #291200, #8d4000);
-  -webkit-transition-property: all;
-  -webkit-transition-duration: 0.2s;
+  -webkit-transition: all .15s ease-in;
+  -moz-transition: all .15s ease-in;
+  -ms-transition: all .15s ease-in;
+  transition: all .15s ease-in;
 }
 
 
@@ -44,16 +52,20 @@ td:hover {
 
 #resetGame {
   display: inline-block;
-  margin-top: 1em;
+  margin-top: 1.2em;
   font-size: 2em;
   color: #a1e4ee;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 
 .fa {
-  display: inline-block;
-  margin-top: 30px;
-  font-size: 3em;
+  display: none;
+  margin-top: 22px;
+  font-size: 4em;
   color: #fdcd9c;
 }
 
@@ -69,7 +81,7 @@ td:hover {
 .center {
   position: fixed;
   background-image: linear-gradient(45deg, #006fd4, #003e6d);
-  border-radius: 20em;
+  border-radius: 4em;
 }
 
 
@@ -96,4 +108,10 @@ td:hover {
 
 .hidden {
   display: none;
+}
+
+
+#copyrights {
+  font-size: small;
+  padding: 1.4em;
 }
