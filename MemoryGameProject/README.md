@@ -1,4 +1,5 @@
 # Memory Game Project
+
 by Charles Szelazek.
 
 # About the game:
@@ -13,7 +14,5 @@ There are 25 cards (one is a reset button) with 12 types of signs that appear tw
 
 Internet connection is needed for:
 
-Dependency name:        Responsible for:
-
-- Font Awesome 4.6.1	  • Proper display of all signs.
-- jQuery 3.3.1          • User Interaction.
+• Font Awesome 4.6.1 - Proper display of all signs.
+• jQuery 3.3.1 - User Interaction.
