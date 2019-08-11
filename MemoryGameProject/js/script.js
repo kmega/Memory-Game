@@ -1,6 +1,8 @@
+// Before loading, create an array of font-awesome signs.
 const listOfSigns = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb", "fa fa-automobile", "fa fa-file-text", "fa fa-gear", "fa fa-bullhorn"];
 let signID = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11];
 
+// After loading, create a table with 5x5 cells and define reset button.
 $(document).ready(() => {
 
   for (let row = 0; row < 5; row++) {
@@ -13,13 +15,16 @@ $(document).ready(() => {
     }
   }
 
+  // Randomly shuffle IDs and then assign signs to IDs in table cells.
   signID = ShuffleIDs(signID);
   AddSigns(signID, listOfSigns);
 
 });
 
+// Create variables for game state and timer management.
 let reset = false, gameIsFinished = false, timerInProgress = false, minutes = 0, seconds = 0, separator = ":", playerMoves = 0, multiplier = 1, stars = 0;
 
+// On clicking a cell for the first time execute the timer.
 $(document).on("click", "td", function() {
 
   if (timerInProgress == false && $(this).hasClass("center") == false) {
@@ -27,11 +32,13 @@ $(document).on("click", "td", function() {
     Timer();
   }
 
+  // On clicking a cell, but not a RESET button, show a sign. Prevent matched cells to be bugged by clicking on them again.
   $(this).children().addClass("cardIsOpen");
   if ($(this).children().hasClass("match") || $(this).hasClass("center")) {
     $(this).children().removeClass("cardIsOpen");
   }
 
+  // After two cards are opened, add one move and check for user performance.
   if ($("div.cardIsOpen").length == 2) {
 
     playerMoves++;
@@ -41,6 +48,7 @@ $(document).on("click", "td", function() {
       multiplier++;
     }
 
+    // If there is a match, don't close the cards. In other case, show signs and block user from interacting for short period of time.
     if ($("div.cardIsOpen:first").attr("class") == $("div.cardIsOpen:last").attr("class")) {
       $(".cardIsOpen").addClass("match");
       $(".cardIsOpen").removeClass("cardIsOpen");
@@ -56,6 +64,7 @@ $(document).on("click", "td", function() {
     }
   }
 
+  // If game detects all cards matched, display time, moves and performance of the user.
   if ($("div.match").length == 24 && gameIsFinished == false) {
     gameIsFinished = true;
     stars = $("div.fa-star").length;
@@ -65,6 +74,7 @@ $(document).on("click", "td", function() {
 
 });
 
+// On clicking RESET button, restore everything to it's starting value.
 $(document).on("click", "td.center", function() {
 
   $("#timer").text("0:00");
@@ -93,6 +103,7 @@ $(document).on("click", "td.center", function() {
 
 });
 
+// Function that is responsible for shuffling IDs.
 function ShuffleIDs(signID) {
 
   let firstID, secondID, holder;
@@ -114,6 +125,7 @@ function ShuffleIDs(signID) {
 
 };
 
+// Function that is responsible for adding signs to IDs.
 function AddSigns(signID, listOfSigns) {
 
   let value = 0;
@@ -130,6 +142,7 @@ function AddSigns(signID, listOfSigns) {
 
 };
 
+// Function that is responsible counting time.
 function Timer() {
 
   if (seconds >= 60) {
@@ -145,7 +158,7 @@ function Timer() {
   }
 
   $("#timer").text(minutes + separator + seconds);
-  if (gameIsFinished == false) {
+  if (gameIsFinished == false && timerInProgress == true) {
     seconds++;
     setTimeout("Timer()", 1000);
   }
