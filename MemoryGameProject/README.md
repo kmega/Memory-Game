@@ -15,4 +15,5 @@ There are 25 cards (one is a reset button) with 12 types of signs that appear tw
 Internet connection is needed for:
 
 • Font Awesome 4.6.1 - Proper display of all signs.
+
 • jQuery 3.3.1 - User Interaction.
