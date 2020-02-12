@@ -1,6 +1,8 @@
-# Memory Game Project - https://kmega.github.io/Memory-Game/
+# Memory Game Project
 
 by Charles Szelazek.
+
+Preview - https://kmega.github.io/Memory-Game/
 
 # About the game:
 
